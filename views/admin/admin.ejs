@@ -1,0 +1,78 @@
+<% if (message !== undefined) {
+	if (message.info !== undefined) { %>
+		<div class="message info"><%= __(message.info.reverse()[0]) %></div>
+	<% } else if (message.error !== undefined) { %>
+		<div class="message error"><%= __(message.error.reverse()[0]) %></div>
+	<% }
+} %>
+<header>
+	<a href="/"><img id="logo" src="/img/logo-inverse.svg" title="Home"></a>
+	<nav>
+		<a href="#url"><%= __('URLs') %></a>
+		<a href="#portifolio"><%= __('Portifolio Item') %></a>
+		<a href="#blog"><%= __('Blog Post') %></a>
+		<a href="#user"><%= __('Users') %></a>
+		<a href="#mail"><%= __('Emails') %></a>
+		<a href="#config"><%= __('Configurations') %></a>
+	</nav>
+</header>
+<div class="container">
+	<section id="url">
+		<fieldset>
+			<legend><%= __('URLs') %></legend>
+			<form action="/url" method="post" class="grid">
+				<div class="row">
+					<label class="span4" for="path"><%= __('Path') %> <abbr title="required">*</abbr>:</label>
+					<input class="span8" type="text" name="path" id="path" required="required" aria-required="true" placeholder="<%= __('Path for URL') %>"/>
+				</div>
+				<div class="row">
+					<label class="span4" for="name"><%= __('Name') %> <abbr title="required">*</abbr>:</label>
+					<input class="span8" type="test" name="name" id="name" required="required" aria-required="true" placeholder="<%= __('Name for URL') %>"/>
+				</div>
+				<div class="row">
+					<label class="span4" for="description"><%= __('Title') %><abbr title="required">*</abbr></label>
+					<textarea class="span8" name="description" id="description" required="required" aria-required="true" placeholder="<%= __('Description for the URL') %>"></textarea>
+				</div>
+				<div class="row">
+					<inputtype="hidden" name="_csrf" value="<%= token %>"/>
+					<input class="span12"  type="submit" value="<%= __('Enviar') %>"/>
+				</div>
+			</form>
+		</fieldset>
+	</section>
+	<section id="portifolio">
+		<fieldset>
+			<legend><%= __('Portifolio Itens') %></legend>
+			<form action="/portifolio" method="post" class="grid">
+				<div class="row">
+					<label class="span4" for="name"><%= __('Name') %> <abbr title="required">*</abbr>:</label>
+					<input class="span8" type="text" name="name" id="name" required="required" aria-required="true" placeholder="<%= __('Iten\'s name') %>"/>
+				</div>
+				<div class="row">
+					<label class="span4" for="type"><%= __('Type') %> <abbr title="required">*</abbr>:</label>
+					<input class="span8" type="text" name="type" id="type" required="required" aria-required="true" placeholder="<%= __('Iten\'s name') %>"/>
+				</div>
+				<div class="row">
+					<label class="span4" for="css"><%= __('CSS') %> <abbr title="required">*</abbr>:</label>
+					<input class="span8" type="file" name="css" id="css" required="required" aria-required="true" placeholder="<%= __('Iten\'s CSS') %>"/>
+				</div>
+				<div class="row">
+					<label class="span4" for="thumb"><%= __('Thumbnail') %> <abbr title="required">*</abbr>:</label>
+					<input class="span8" type="file" name="thumb" id="thumb" required="required" aria-required="true" placeholder="<%= __('Iten\'s CSS') %>"/>
+				</div>
+				<div class="row">
+					<label class="span4" for="description"><%= __('Description') %><abbr title="required">*</abbr></label>
+					<textarea class="span8" name="description" id="description" required="required" aria-required="true" placeholder="<%= __('Iten\'s description') %>"></textarea>
+				</div>
+				<div class="row">
+					<label class="span4" for="content"><%= __('Content') %><abbr title="required">*</abbr></label>
+					<textarea class="span8" name="content" id="content" required="required" aria-required="true" placeholder="<%= __('Iten\'s content') %>"></textarea>
+				</div>
+				<div class="row">
+					<inputtype="hidden" name="_csrf" value="<%= token %>"/>
+					<input class="span12"  type="submit" value="<%= __('Enviar') %>"/>
+				</div>
+			</form>
+		</fieldset>
+	</section>
+</div>

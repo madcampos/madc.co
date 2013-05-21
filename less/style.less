@@ -1,0 +1,270 @@
+@import 'default';
+@import 'search';
+@import 'home';
+
+#head{
+	text-align: center;
+	h1{
+		color: @baseWhite;
+		display: inline-block;
+		font-size: 3em;
+		text-shadow:  -1px 0 @baseOrange, 0 1px @baseOrange, 1px 0 @baseOrange, 0 -1px @baseOrange;
+		vertical-align: middle;
+
+		&::-webkit-selection {
+			background-color: transparent;
+			color: @white;
+			text-shadow:  -1px 0 @baseLightBlue, 0 1px @baseLightBlue, 1px 0 @baseLightBlue, 0 -1px @baseLightBlue;
+		}
+
+		&::-moz-selection {
+			background-color: transparent;
+			color: @white;
+			text-shadow:  -1px 0 @baseLightBlue, 0 1px @baseLightBlue, 1px 0 @baseLightBlue, 0 -1px @baseLightBlue;
+		}
+
+		&::selection {
+			background-color: transparent;
+			color: @white;
+			text-shadow:  -1px 0 @baseLightBlue, 0 1px @baseLightBlue, 1px 0 @baseLightBlue, 0 -1px @baseLightBlue;
+		}
+	}
+	img{
+		margin-right: 2em;
+		vertical-align: middle;
+		height: 6em;
+	}
+}
+
+#menu{
+	background-color: @baseBlue;
+	bottom: 0;
+	height: 4em;
+	left:0;
+	position: fixed;
+	text-align: center;
+	width: 100%;
+
+	a{
+		display: inline-block;
+		margin-left:0.5em;
+		margin-right: 0.5em;
+		margin-top: 1em;
+
+		&::before{
+			display: inline-block;
+			height: 30px;
+			width: 30px;
+			vertical-align: middle;
+			margin-right: 0.5em;
+			content: '';
+			background-image: url('/img/sprite.svg');
+			background-size: 90px 180px;
+		}
+
+		&[href~='/contact']::before{
+			background-position: 0 0;
+		}
+
+		&[href~='/home']::before{
+			background-position: 0 -90px;
+		}
+
+		&[href~='/portifolio']::before{
+			background-position: 0 -150px;
+		}
+
+		&[href~='/map']::before{
+			background-position: 0 -30px;
+		}
+
+		&[href~='/beta']::before{
+			background-position: 0 -60px;
+		}
+
+		&[href~='/blog']::before{
+			background-position: 0 -120px;
+		}
+
+		&:hover{
+			&[href~='/contact']::before{
+				background-position: -30px 0;
+			}
+
+			&[href~='/home']::before{
+				background-position: -30px -90px;
+			}
+
+			&[href~='/portifolio']::before{
+				background-position: -30px -150px;
+			}
+
+			&[href~='/map']::before{
+				background-position: -30px -30px;
+			}
+
+			&[href~='/beta']::before{
+				background-position: -30px -60px;
+			}
+
+			&[href~='/blog']::before{
+				background-position: -30px -120px;
+			}
+		}
+
+		&:focus{
+			&[href~='/contact']::before{
+				background-position: -60px 0;
+			}
+
+			&[href~='/home']::before{
+				background-position: -60px -90px;
+			}
+
+			&[href~='/portifolio']::before{
+				background-position: -60px -150px;
+			}
+
+			&[href~='/map']::before{
+				background-position: -60px -30px;
+			}
+
+			&[href~='/beta']::before{
+				background-position: -60px -60px;
+			}
+
+			&[href~='/blog']::before{
+				background-position: -60px -120px;
+			}
+		}
+	}
+}
+
+@media all and (max-width:50em){
+	#menu{
+		height: 2em;
+
+		a{
+			margin-top: 0.2em;
+
+			&::before{
+				height: 23px;
+				width: 23px;
+				margin-right: 0.2em;
+				content: '';
+				background-size: 69px 138px;
+			}
+
+			&[href~='/contact']::before{
+				background-position: 0 0;
+			}
+
+			&[href~='/home']::before{
+				background-position: 0 -69px;
+			}
+
+			&[href~='/portifolio']::before{
+				background-position: 0 -115px;
+			}
+
+			&[href~='/map']::before{
+				background-position: 0 -23px;
+			}
+
+			&[href~='/beta']::before{
+				background-position: 0 -46px;
+			}
+
+			&[href~='/blog']::before{
+				background-position: 0 -92px;
+			}
+
+			&:hover{
+				&[href~='/contact']::before{
+					background-position: -23px 0;
+				}
+
+				&[href~='/home']::before{
+					background-position: -23px -69px;
+				}
+
+				&[href~='/portifolio']::before{
+					background-position: -23px -115px;
+				}
+
+				&[href~='/map']::before{
+					background-position: -23px -23px;
+				}
+
+				&[href~='/beta']::before{
+					background-position: -23px -46px;
+				}
+
+				&[href~='/blog']::before{
+					background-position: -23px -92px;
+				}
+			}
+
+			&:focus{
+				&[href~='/contact']::before{
+					background-position: -46px 0;
+				}
+
+				&[href~='/home']::before{
+					background-position: -46px -69px;
+				}
+
+				&[href~='/portifolio']::before{
+					background-position: -46px -115px;
+				}
+
+				&[href~='/map']::before{
+					background-position: -46px -23px;
+				}
+
+				&[href~='/beta']::before{
+					background-position: -46px -46px;
+				}
+
+				&[href~='/blog']::before{
+					background-position: -46px -92px;
+				}
+			}
+		}
+	}
+}
+
+@media all and (max-width:35em){
+	#head{
+		h1{
+			font-size: 2em;
+		}
+
+		img{
+			width: 3.5em;
+			height: 3.5em;
+		}
+	}
+
+	#menu{
+		a{
+			height: 28px;
+			overflow: hidden;
+			width: 23px;
+		}
+	}
+}
+
+@media all and (max-width:25em){
+	#head{
+		h1{
+			font-size: 1.5em;
+			margin: 0.3em 0;
+		}
+
+		img{
+			width: 2em;
+			height: 2em;
+		}
+	}
+}

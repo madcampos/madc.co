@@ -1,0 +1,29 @@
+<meta name="totalResults" content="<%- totalResults %>"/>
+<meta name="startIndex" content="<%- startIndex %>"/>
+<meta name="itemsPerPage" content="<%- itensPerPage %>"/>
+<form id="searchbox" action="/search" method="post">
+	<label><%= __('Busca:') %></label>
+	<input type="search" placeholder="<%= __('Insira o termo de busca.') %>" value="<%= query %>" list="suggestions" id="searchfield" name="searchfield">
+	<datalist id="suggestions">
+	</datalist>
+	<input type="hidden" name="_csrf" value="<%= token %>"/>
+	<input type="submit" value="<%= __('Buscar') %>"/>
+	<p>
+		<label><%= __('Busca por tags') %> <input type="checkbox" title="<%= __('Busca por tags') %>" id="tag" name="tag" <%= tags == 'on' ? 'checked' : '' %>/></label>
+		<label><%= __('Buscar no texto dos artigos') %> <input type="checkbox" title="<%= __('Buscar no texto dos artigos') %>" id="article" name="article" <%= articles == 'on' ? 'checked' : '' %>/></label>
+	</p>
+</form>
+<% for (var result in results) { %>
+	<div class="searchresult">
+		<a href="<%= results[result].link %>"><h3><%= results[result].title %></h3></a>
+		<% if (results[result].thumb) { %>
+			<a href="<%= results[result].link %>"><img src="<% results[result].thumb.path %>" alt="<%= results[result].thumb.alt %>"/></a>
+		<% } %>
+		<p><%= results[result].content.slice(0,140) %><a href="<%= results[result].link %>"> <%= __('Ler mais...') %></a></p>
+		<span class="time"><%= results[result].updated %></span>
+	</div>
+<% } %>
+
+<div id="pagiantion">
+
+</div>

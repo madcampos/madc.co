@@ -1,0 +1,53 @@
+﻿input[type="text"],input[type="email"],textarea{background-color:#0080FF;}
+input[type="submit"]{border:medium #0080FF solid;}
+input[type="submit"]:focus{
+	background-color:#4267B1;
+	color:#4267B1;
+}
+input[type="submit"]:active{
+	background-color:#8db9e5;
+	color:#8db9e5;
+}
+input[type="email"]:focus, input[type="text"]:focus,textarea:focus{background-color:#4367B1;}
+
+#ie-box{
+	background-color:#000000;
+	bottom:0px;
+	display:block;
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+	height:100%;
+	left:0px;
+	top:0px;
+	margin:0px;
+	overflow:hidden;
+	padding:0px;
+	position:absolute;
+	right:0px;
+	width:100%;
+	z-index:1000;
+}
+
+#ie-inner-box{
+	background-color:#ffffff;
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	height:40%;
+	margin-left:auto;
+	margin-right:auto;
+	padding:1em;
+	position:absolute;
+	text-align:center;
+	top:10%;
+	width:60%;
+	z-index:1001;
+}
+
+#browsers{
+	display:inline-block;
+	text-align:center;
+}
+
+.browsers{
+	height:80px;
+	margin:5px;
+	width:80px;
+}

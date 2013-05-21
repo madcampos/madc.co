@@ -1,0 +1,159 @@
+﻿/*
+ * font faces and styling
+ */
+
+@font-face {
+	font-family: 'Comfortaa';
+	src: url('../fonts/comfortaa_bold-webfont.eot');
+	src: url('../fonts/comfortaa_bold-webfont.eot?iefix') format('eot'),
+		url('../fonts/comfortaa_bold-webfont.woff') format('woff'),
+		url('../fonts/comfortaa_bold-webfont.ttf') format('truetype'),
+		url('../fonts/comfortaa_bold-webfont.svg#webfont2PHxN4oo') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Comfortaa';
+	src: url('../fonts/comfortaa_regular-webfont.eot');
+	src: url('../fonts/comfortaa_regular-webfont.eot?iefix') format('eot'),
+		url('../fonts/comfortaa_regular-webfont.woff') format('woff'),
+		url('../fonts/comfortaa_regular-webfont.ttf') format('truetype'),
+		url('../fonts/comfortaa_regular-webfont.svg#webfonteF5zn2AF') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family:'Tiza';
+	src:url('../fonts/tiza-webfont.eot');
+	src:url('../fonts/tiza-webfont.eot?iefix') format('eot'),
+		url('../fonts/tiza-webfont.woff') format('woff'),
+		url('../fonts/tiza-webfont.ttf') format('truetype'),
+		url('../fonts/tiza-webfont.svg#webfontgPdTKlmu') format('svg');
+	font-weight:normal;
+	font-style:normal;
+}
+
+/* titles */
+
+h1 {
+	font-family:Tiza, serif;
+	color:#0080ff;
+	font-size:2.2em;
+	text-align:center;
+	margin-top:-8px;
+	display:block;
+}
+
+h2 {
+	font-family:Tiza, serif;
+	font-size:1.4em;
+	color:#0080ff;
+	display:block;
+}
+
+/* text */
+
+p {
+	font-family:Comfortaa, Segoe UI, sans-serif;
+	color:#333333;
+}
+
+pre {
+	
+}
+
+/*
+ * objects positioning
+ */
+
+/* body */
+
+body{
+	background:white url('../img/wall.png') repeat;
+	padding: 5% 10%;
+}
+
+#board{
+	padding: 1% 2%;
+	border-width: 40px;
+	-moz-border-image:url('../img/board.png') 40 repeat;
+	-webkit-border-image:url('../img/board.png') 40 repeat;
+	-o-border-image:url('../img/board.png') 40 repeat;
+	border-image:url('../img/board.png') 40 repeat;
+}
+
+/* header */
+
+header{
+	height:4.2em;
+	display:block;
+	border-width: 4px 26px 28px 9px;
+	-moz-border-image: url('../img/header.png') 4 26 28 9 stretch;
+	-webkit-border-image: url('../img/header.png') 4 26 28 9 stretch;
+	-o-border-image: url('../img/header.png') 4 26 28 9 stretch;
+	border-image: url('../img/header.png') 4 26 28 9 stretch;
+}
+
+header img{
+	margin-top: -50px;
+}
+header img:last-child{
+	margin-left:93%;
+}
+
+/* nav */
+nav{
+	display:block;
+	text-align:center;
+	margin-left:13%;
+}
+
+nav div {
+	float:left;
+	margin:10px;
+	padding-bottom:10px;
+	padding-left:5px;
+	padding-right:5px;
+	border-width: 4px 8px 12px 7px;
+	-moz-border-image: url('../img/nav.png') 4 8 12 7 stretch;
+	-webkit-border-image: url('../img/nav.png') 4 8 12 7 stretch;
+	-o-border-image: url('../img/nav.png') 4 8 12 7 stretch;
+	border-image: url('../img/nav.png') 4 8 12 7 stretch;
+	height:2.2em;
+}
+
+#sobreMim h2{
+	color:#3a9900;
+	margin-top:-13px;
+}
+
+#portifolio h2{
+	color:#980000;
+	margin-top:-13px;
+}
+
+#contato h2{
+	color:#bc9600;
+	margin-top:-13px;
+}
+
+#sobreMim img{
+	margin-top:-40px;
+	margin-left:40%;
+}
+
+#portifolio img{
+	margin-top:-40px;
+	margin-left:80%;
+}
+
+#contato img{
+	margin-top:-40px;
+	margin-left:-10px;
+}
+
+/* content */
+
+/* footer */

@@ -1,0 +1,9 @@
+<nav id="menu" role="navigation">
+	<% menu.forEach(function(el){
+		if (el[0] == currentPath) { %>
+			<a class="active" title="<%= __(el[1]) %>"><%= __(el[1]) %></a>
+		<% } else { %>
+			<a href="<%= el[0] %>" title="<%= __(el[1]) %>"><%= __(el[1]) %></a>
+		<% }
+	}); %>
+</nav>

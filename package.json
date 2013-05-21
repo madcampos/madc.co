@@ -1,0 +1,25 @@
+{
+	"name": "madcampos-site",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node app"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:madcampos/madc.co.git"
+	},
+	"dependencies": {
+		"express": "latest",
+		"ejs": "latest",
+		"mongoose": "latest",
+		"i18n": "latest",
+		"express-partials": "latest",
+		"less-middleware" : "latest",
+		"spdy": "latest",
+		"passport": "latest",
+		"passport-local": "latest",
+		"socket.io": "latest",
+		"colors": "latest"
+	}
+}

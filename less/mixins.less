@@ -1,0 +1,338 @@
+/**
+ * Set color for Selection
+ */
+.selection(@bgColor: @blue, @fgColor: @white) {
+	*::-webkit-selection {
+	background-color: @bgColor;
+	color: @fgColor;
+	}
+
+	*::-moz-selection {
+		background-color: @bgColor;
+		color: @fgColor;
+	}
+
+	*::selection {
+		background-color: @bgColor;
+		color: @fgColor;
+	}
+}
+
+/**
+ * Clearfix
+ */
+.clearfix {
+	*zoom: 1;
+	&::before, &::after {
+		display: table;
+		content: "";
+		// Fixes Opera/contenteditable bug:
+		// http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+		line-height: 0;
+	}
+	&::after {
+		clear: both;
+	}
+}
+
+/**
+ * Outline and border
+ */
+.outline(@style: @defaultOutlineStyle, @width: @defaultOutlineWidth, @offset: @defaultOutlineOffset) {
+	outline-offset: @offset;
+	outline-style: @style;
+	outline-width: @width;
+}
+
+.border(@style: @defaultBorderStyle, @width: @defaultBorderWidth) {
+	border-width: @width;
+	border-style: @style;
+}
+
+[class*=border-color] {
+	.border();
+}
+
+/**
+ * Colors
+ */
+#color {
+	.color(@name, @color) {
+		.bg-color-@{name} {
+			background-color: @color;
+		}
+		
+		.fg-color-@{name} {
+			color: @color;
+		}
+		
+		.border-color-@{name} {
+			border-color: @color;
+		}
+		
+		.outline-color-@{name} {
+			outline-color: @color;
+		}
+	}
+}
+
+
+
+/**
+ * CSS3 Mixins
+ */
+// Border Radius
+.border-radius(@radius) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
+
+// Single Corner Border Radius
+.border-top-left-radius(@radius) {
+	-webkit-border-top-left-radius: @radius;
+	-moz-border-radius-topleft: @radius;
+	border-top-left-radius: @radius;
+}
+.border-top-right-radius(@radius) {
+	-webkit-border-top-right-radius: @radius;
+	-moz-border-radius-topright: @radius;
+	border-top-right-radius: @radius;
+}
+.border-bottom-right-radius(@radius) {
+	-webkit-border-bottom-right-radius: @radius;
+	-moz-border-radius-bottomright: @radius;
+	border-bottom-right-radius: @radius;
+}
+.border-bottom-left-radius(@radius) {
+	-webkit-border-bottom-left-radius: @radius;
+	-moz-border-radius-bottomleft: @radius;
+	border-bottom-left-radius: @radius;
+}
+
+// Single Side Border Radius
+.border-top-radius(@radius) {
+	.border-top-right-radius(@radius);
+	.border-top-left-radius(@radius);
+}
+.border-right-radius(@radius) {
+	.border-top-right-radius(@radius);
+	.border-bottom-right-radius(@radius);
+}
+.border-bottom-radius(@radius) {
+	.border-bottom-right-radius(@radius);
+	.border-bottom-left-radius(@radius);
+}
+.border-left-radius(@radius) {
+	.border-top-left-radius(@radius);
+	.border-bottom-left-radius(@radius);
+}
+
+// Drop shadows
+.box-shadow(@shadow) {
+	-webkit-box-shadow: @shadow;
+	-moz-box-shadow: @shadow;
+	box-shadow: @shadow;
+}
+
+// Transitions
+.transition(@transition) {
+	-webkit-transition: @transition;
+	-moz-transition: @transition;
+	-o-transition: @transition;
+	transition: @transition;
+}
+.transition-delay(@transition-delay) {
+	-webkit-transition-delay: @transition-delay;
+	-moz-transition-delay: @transition-delay;
+	-o-transition-delay: @transition-delay;
+	transition-delay: @transition-delay;
+}
+.transition-duration(@transition-duration) {
+	-webkit-transition-duration: @transition-duration;
+	-moz-transition-duration: @transition-duration;
+	-o-transition-duration: @transition-duration;
+	transition-duration: @transition-duration;
+}
+
+// Transformations
+.rotate(@degrees) {
+	-webkit-transform: rotate(@degrees);
+	-moz-transform: rotate(@degrees);
+	-ms-transform: rotate(@degrees);
+	-o-transform: rotate(@degrees);
+	transform: rotate(@degrees);
+}
+.scale(@ratio) {
+	-webkit-transform: scale(@ratio);
+	-moz-transform: scale(@ratio);
+	-ms-transform: scale(@ratio);
+	-o-transform: scale(@ratio);
+	transform: scale(@ratio);
+}
+.translate(@x, @y) {
+	-webkit-transform: translate(@x, @y);
+	-moz-transform: translate(@x, @y);
+	-ms-transform: translate(@x, @y);
+	-o-transform: translate(@x, @y);
+	transform: translate(@x, @y);
+}
+.skew(@x, @y) {
+	-webkit-transform: skew(@x, @y);
+	-moz-transform: skew(@x, @y);
+	-ms-transform: skewX(@x) skewY(@y); // See https://github.com/twitter/bootstrap/issues/4885
+	-o-transform: skew(@x, @y);
+	transform: skew(@x, @y);
+	-webkit-backface-visibility: hidden; // See https://github.com/twitter/bootstrap/issues/5319
+}
+.translate3d(@x, @y, @z) {
+	-webkit-transform: translate3d(@x, @y, @z);
+	-moz-transform: translate3d(@x, @y, @z);
+	-o-transform: translate3d(@x, @y, @z);
+	transform: translate3d(@x, @y, @z);
+}
+
+// Backface visibility
+// Prevent browsers from flickering when using CSS 3D transforms.
+// Default value is `visible`, but can be changed to `hidden
+// See git pull https://github.com/dannykeane/bootstrap.git backface-visibility for examples
+.backface-visibility(@visibility){
+	-webkit-backface-visibility: @visibility;
+	-moz-backface-visibility: @visibility;
+	backface-visibility: @visibility;
+}
+
+// Background clipping
+// Heads up: FF 3.6 and under need "padding" instead of "padding-box"
+.background-clip(@clip) {
+	-webkit-background-clip: @clip;
+	-moz-background-clip: @clip;
+	background-clip: @clip;
+}
+
+// Background sizing
+.background-size(@size) {
+	-webkit-background-size: @size;
+	-moz-background-size: @size;
+	-o-background-size: @size;
+	background-size: @size;
+}
+
+
+// Box sizing
+.box-sizing(@boxmodel) {
+	-webkit-box-sizing: @boxmodel;
+	-moz-box-sizing: @boxmodel;
+	box-sizing: @boxmodel;
+}
+
+// User select
+// For selecting text on the page
+.user-select(@select) {
+	-webkit-user-select: @select;
+	-moz-user-select: @select;
+	-ms-user-select: @select;
+	-o-user-select: @select;
+	user-select: @select;
+}
+
+// Resize anything
+.resizable(@direction) {
+	resize: @direction; // Options: horizontal, vertical, both
+	overflow: auto; // Safari fix
+}
+
+// CSS3 Content Columns
+.content-columns(@columnCount, @columnGap: @gridGutterWidth) {
+	-webkit-column-count: @columnCount;
+	-moz-column-count: @columnCount;
+	column-count: @columnCount;
+	-webkit-column-gap: @columnGap;
+	-moz-column-gap: @columnGap;
+	column-gap: @columnGap;
+}
+
+// Optional hyphenation
+.hyphens(@mode: auto) {
+word-wrap: break-word;
+	-webkit-hyphens: @mode;
+	-moz-hyphens: @mode;
+	-ms-hyphens: @mode;
+	-o-hyphens: @mode;
+	hyphens: @mode;
+}
+
+// Opacity
+.opacity(@opacity) {
+	opacity: @opacity / 100;
+	filter: ~"alpha(opacity=@{opacity})";
+}
+
+/**
+ * Forms
+ */
+.input-block-level {
+	display: block;
+	width: 100%;
+	.box-sizing(border-box); // Makes inputs behave like true block-level elements
+}
+
+/**
+ * Grid System
+ */
+#grid {
+	.fluid (@fluidGridColumnWidth, @fluidGridGutterWidth) {
+		.spanX (@index) when (@index > 0) {
+			.span@{index} { .span(@index); }
+			.spanX(@index - 1);
+		}
+		.spanX (0) {}
+
+		.offsetX (@index) when (@index > 0) {
+			.offset@{index} { .offset(@index); }
+			.offset@{index}:first-child { .offsetFirstChild(@index); }
+			.offsetX(@index - 1);
+		}
+		.offsetX (0) {}
+
+		.offset (@columns) {
+			margin-left: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) + (@fluidGridGutterWidth*2);
+			*margin-left: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) - (.5 / @gridRowWidth * 100 * 1%) + (@fluidGridGutterWidth*2) - (.5 / @gridRowWidth * 100 * 1%);
+		}
+
+		.offsetFirstChild (@columns) {
+			margin-left: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) + (@fluidGridGutterWidth);
+			*margin-left: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) - (.5 / @gridRowWidth * 100 * 1%) + @fluidGridGutterWidth - (.5 / @gridRowWidth * 100 * 1%);
+		}
+
+		.span (@columns) {
+			width: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1));
+			*width: (@fluidGridColumnWidth * @columns) + (@fluidGridGutterWidth * (@columns - 1)) - (.5 / @gridRowWidth * 100 * 1%);
+		}
+
+		.row {
+			width: 100%;
+			.clearfix();
+			[class*="span"] {
+				.input-block-level();
+				float: left;
+				margin-bottom: 0.1em;
+				margin-top: 0.1em;
+				margin-left: @fluidGridGutterWidth;
+				*margin-left: @fluidGridGutterWidth - (.5 / @gridRowWidth * 100 * 1%);
+			}
+			[class*="span"]:first-child {
+				margin-left: 0;
+			}
+
+			// Space grid-sized controls properly if multiple per line
+			.controls-row [class*="span"] + [class*="span"] {
+				margin-left: @fluidGridGutterWidth;
+			}
+
+			// generate .spanX and .offsetX
+			.spanX (@gridColumns);
+			.offsetX (@gridColumns);
+		}
+	}
+}

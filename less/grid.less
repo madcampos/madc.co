@@ -1,0 +1,17 @@
+/**
+ * Make fluid grid
+ */
+#grid > .fluid(@fluidGridColumnWidth, @fluidGridGutterWidth);
+
+.container{
+	margin-right: auto;
+	margin-left: auto;
+	.clearfix();
+	width: @fluidGridRowWidth;
+}
+
+.container-fluid {
+	padding-right: @fluidGridGutterWidth;
+	padding-left: @fluidGridGutterWidth;
+	.clearfix();
+}

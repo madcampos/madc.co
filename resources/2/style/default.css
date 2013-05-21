@@ -1,0 +1,40 @@
+﻿body {
+	background:url('../img/bg.jpg') left top auto auto repeat fixed beige;
+	margin:0;
+	overflow:hidden;
+}
+
+#bio, form{
+	float:left;
+	margin: auto 3%;
+	width:44%;
+}
+
+form{
+	float:right;
+}
+
+#social{
+	margin: 0 auto;
+	width:30%;
+}
+
+#social a{text-decoration:none;}
+
+#google:before{content:url('../img/social/google.svg');}
+#google:focus:before{content:url('../img/social/googleFocus.svg');}
+#google:visited:before{content:url('../img/social/googleVisited.svg');}
+
+#facebook:before{content:url('../img/social/facebook.svg');}
+#facebook:focus:before{content:url('../img/social/facebookFocus.svg');}
+#facebook:visited:before{content:url('../img/social/facebookVisited.svg');}
+
+#twitter:before{content:url('../img/social/twitter.svg');}
+#twitter:focus:before{content:url('../img/social/twitterFocus.svg');}
+#twitter:visited:before{content:url('../img/social/twitterVisited.svg');}
+
+*:focus{
+	border:none;
+	outline:none;
+	text-decoration:none;
+}

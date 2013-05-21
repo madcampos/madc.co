@@ -1,0 +1,101 @@
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+	<!-- WP8 IE10.0 Viewport Fix -->
+	<script>(function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var msViewportStyle=document.createElement("style");msViewportStyle.appendChild(document.createTextNode("@-ms-viewport{width:auto!important}"));document.getElementsByTagName("head")[0].appendChild(msViewportStyle);}})();</script>
+	<!-- CSS definitions -->
+	<% if (Array.isArray(css)) {
+		for (var i in css) { %>
+			<link rel="stylesheet" href="/style/<%- css[i] %>.css">
+		<% } %>
+	<% } else { %>
+		<link rel="stylesheet" href="/style/<%- css %>.css">
+	<% } %>
+
+	<!-- prefetching -->
+	<!-- http://csswizardry.com/2013/01/front-end-performance-for-web-designers-and-front-end-developers/#section:http-requests-and-dns-lookups -->
+	<link rel="dns-prefetch" href="google-analytics.com">
+	<link rel="dns-prefetch" href="twitter.com">
+	<link rel="dns-prefetch" href="facebook.com">
+	<link rel="dns-prefetch" href="github.com">
+
+	<link rel="prefetch" href="/img/sprite.svg">
+	<link rel="prefetch" href="/img/logo.svg">
+	<!-- <link rel="prefetch" href="/img/dot.gif"> -->
+	<link rel="prefetch" href="/js/ga.js">
+
+	<!-- Unicode, viewpoint and IE rendering options -->
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" href="/img/favicon/apple-icon.png">
+	<meta name="msapplication-TileImage" content="/img/favicon/tileicon.png">
+	<meta name="msapplication-TileColor" content="#0080ff">
+	<link rel="shortcut icon" href="/img/favicon/favicon.ico">
+
+	<!-- Site-level metadata -->
+	<title><%= __(title) %></title>
+	<meta name="author" content="Marco Aurélio Dilda Campos">
+	<meta name="keywords" content="webdeveloper,webdesigner,games,usability">
+	<meta name="description" content="<%- __('Estudante de Ciência da Computação pela UFMT, intusiasta por design, usabilidade e desenvolvimento de jogos e web.') %>">
+	<link rel="meta" type="application/rdf+xml" title="Dublin" href="/dublin.rdf">
+	<link rel="search" type="application/opensearchdescription+xml" title="MADCampos" href="/search.xml">
+	<link rel="P3Pv1" type=" text/xml" href="/p3p.xml">
+	<link rel="alternate" type="application/vnd.google-earth.kml+xml" href="/geo.kml">
+	<link rel="alternate" type="application/rdf+xml" title="geo" href="/geo.rdf">
+	<link rel="alternate" type="text/directory" title="vCard" href="/vCard.vcf">
+	<link rel="meta" type="application/rdf+xml" title="PICS" href="/pics.rdf">
+	<link rel="alternate" media="only screen and (max-width: 640px)" href="<%= mobilePath %>">
+	<link rel="canonical" href="<%= rootPath %>">
+
+	<!-- IE metadata -->
+	<meta name="application-name" content="MADCampos">
+	<meta name="msapplication-starturl" content="<%- rootPath %>/ie">
+	<meta name="msapplication-tooltip" content="MADCampos pinned site.">
+	<meta name="msapplication-window" content="width=1024;height=640">
+	<meta name="msapplication-navbutton-color" content="#ff8000">
+	<meta name="msapplication-task" content="name=<%= __('Home') %>;action-uri=/;icon-uri=/img/favicon/pinned/home.ico">
+	<meta name="msapplication-task" content="name=<%= __('Portifloio') %>;action-uri=/portifolio;icon-uri=/img/favicon/pinned/portifolio.ico">
+	<meta name="msapplication-task" content="name=<%= __('Blog') %>;action-uri=/blog;icon-uri=/img/favicon/pinned/blog.ico">
+	<meta name="msapplication-task" content="name=<%= __('\u03B2 (Beta)') %>;action-uri=/beta;icon-uri=/img/favicon/pinned/beta.ico">
+	<meta name="msapplication-task" content="name=<%= __('Contato') %>;action-uri=/contact;icon-uri=/img/favicon/pinned/contact.ico">
+	<meta name="msapplication-task" content="name=<%= __('Mapa do Site') %>;action-uri=/map;icon-uri=/img/favicon/pinned/map.ico">
+	<meta name="msapplication-task" content="name=<%= __('Busca') %>;action-uri=/search;icon-uri=/img/favicon/pinned/search.ico">
+
+	<!-- OpenGraph metadata -->
+	<meta property="og:title" content="<%- __(title) %>">
+	<meta property="og:site_name" content="<%- __(title) %>">
+	<meta property="og:description" content="<%- __('Estudante de Ciência da Computação pela UFMT, intusiasta por design, usabilidade e desenvolvimento de jogos e web.') %>">
+	<!-- TODO: rework 'url'? -->
+	<meta property="og:url" content="<%- url %>">
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="pt_BR">
+	<meta property="og:locale:alternate" content="en_US">
+	<meta property="og:image" content="<%- rootPath %>/img/og/madcampos.png">
+	<meta property="og:image:width" content="800">
+	<meta property="og:image:height" content="800">
+	<meta property="og:image:type" content="image/png">
+	<meta property="og:image" content="<%- rootPath %>/img/og/madcampos.svg">
+	<meta property="og:image:type" content="image/svg+xml">
+	<meta property="og:image" content="<%- rootPath %>/img/og/madcampos.jpg">
+	<meta property="og:image:type" content="image/jpeg">
+	<meta property="og:image" content="<%- rootPath %>/img/og/madcampos.gif">
+	<meta property="og:image:type" content="image/gif">
+
+	<!-- Page Validation -->
+	<!-- <meta property="fb:app_id" content="385824641483363"/>
+	<meta name="msvalidate.01" content="9D29BDAC0A995CE1D2996A620F7EE2C0"/>
+	<meta name="google-site-verification" content="zzUDgW_Qbe7lR3i3MWLMHiSp_W0vRDwcmk2RSOFNL7M"/>
+	<meta name="wot-verification" content="8ea47245cda13f60294b"/> -->
+
+	<!-- Lang alternatives -->
+	<link rel="alternative" hreflang="pt-br" href="<%- rootPath %>">
+	<link rel="alternative" hreflang="pt" href="<%- rootPath.replace(/^https:\/\//, 'http://pt.') %>">
+	<link rel="alternative" hreflang="en" href="<%- rootPath.replace(/^https:\/\//, 'http://en.') %>">
+
+	<!-- Robots settings -->
+	<meta name="robots" content="noodp">
+	<meta name="robots" content="noydir">
+	<meta name="Slurp" content="noydir">
+</head>

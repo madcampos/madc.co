@@ -1,0 +1,63 @@
+﻿input, textarea{
+	background-color:transparent;
+	background-position:left center;
+	background-repeat:no-repeat;
+	background-size: 100% 100%;
+	border:none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	color:white;
+	display:block;
+	font-family:'HandTestRegular', cursive;
+	font-size:1.2em;
+	margin: 1em;
+	outline:none;
+	padding:0.3em;
+	width:85%;
+}
+
+textarea{
+	height:7em;
+	overflow:auto;
+	resize:none;
+}
+
+input[type="submit"]{
+	background-image:url('../img/btn/btn.svg');
+	color:#0080FF;
+	cursor:pointer;
+	margin-left:auto;
+	margin-right:auto;
+	width:30%;
+}
+
+input[type="text"], input[type="email"]{background-image:url('../img/text/text.svg');}
+textarea{background-image:url('../img/text/textarea.svg');}
+
+::-webkit-input-placeholder{color:white;}
+:-moz-placeholder{color:white;}
+:-ms-input-placeholder{color:white;}
+:placeholder{color:white;}
+
+input[type="email"]:focus, input[type="text"]:focus{background-image:url('../img/text/textFocus.svg');}
+textarea:focus{background-image:url('../img/text/textareaFocus.svg');}
+
+input[type="submit"]:focus{
+	background-image:url('../img/btn/btnFocus.svg');
+	color:#4267B1;
+}
+
+input[type="submit"]:active{
+	background-image:url('../img/btn/btnPress.svg');
+	color:#8db9e5;
+}
+
+.submited input[type="email"]:invalid, .submited input[type="text"]:invalid{
+	background-image:url('../img/text/textInvalid.svg');
+	box-shadow:none;
+}
+
+input[type="email"]:invalid:focus, input[type="text"]:invalid:focus{background-image:url('../img/text/textFocus.svg');}

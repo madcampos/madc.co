@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<% include ../metadata %>
+	<body>
+		<img src="/img/error/line.svg" class="lines" id="line1">
+		<img src="/img/error/line.svg" class="lines" id="line2">
+		<div id="content">
+			<h1>404</h1>
+			<p><%= __('Uou... uou... uou... você está prestes a cruzar a linha, acho que você foi longe demais...') %></p>
+			<p><%= __('Não acha melhor voltar agora?') %></p>
+			<p><%= __('Experimente as opções abaixo:') %></p>
+			<ol>
+				<li><a href="/"><%= __('Voltar para a home.') %></a></li>
+				<li><a href="/map"><%= __('Dar uma olhadinha no mapa do site.') %></a></li>
+				<li><a href="/search"><%= __('Ir em busca de algo.') %></a></li>
+			</ol>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,5 @@
+<nav class="breadcrumbtrail">
+	<% currentPath.split('/').forEach(function(el){ %>
+		<a class="breadcrumb" href="/<%= el %>"><%= el %></a>
+	<% }); %>
+</nav>

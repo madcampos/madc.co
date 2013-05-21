@@ -1,0 +1,7 @@
+<% for (item in items) { %>
+	<div>
+		<img src="<%= items[item].thumb %>" role="presentation">
+		<h2><a href="/portifolio/<%= encodeURIComponent(items[item].name.replace(' ', '_')) %>"><%= items[item].name %></a></h2>
+		<p><%= items[item].description %></p>
+	</div>
+<% } %>

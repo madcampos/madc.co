@@ -1,0 +1,11 @@
+<div class="container">
+	<h2><%= __('Mapa do Site') %></h2>
+	<nav id="sitemap">
+		<dl>
+			<% for(var url in urls) { %>
+				<dt><a href="<%= urls[url].path %>"><h3><%= __(urls[url].name) %></h3></a></dt>
+				<dd><%= __(urls[url].description) %></dd>
+			<% } %>
+		</dl>
+	</nav>
+</div>

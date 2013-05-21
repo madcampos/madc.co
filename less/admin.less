@@ -1,0 +1,56 @@
+@import 'default';
+
+header{
+	box-sizing: border-box;
+	background: @baseBlue;
+	height: 3em;
+	left: 0;
+	padding: 0.3em;
+	position: fixed;
+	top: 0;
+	width: 100%;
+
+	img {
+		height: 100%;
+	}
+
+	nav{
+		float: right;
+		display: inline-block;
+		height: 100%;
+
+		a{
+			color:@baseWhite;
+			vertical-align: middle;
+			margin-left: 0.5em;
+
+			&::before{
+				content: '';
+				display: inline-block;
+				height: 100%;
+				vertical-align: middle;
+			}
+		}
+	}
+}
+
+section{
+	margin-top: 5em;
+	display: none;
+	opacity: 0;
+
+	&:target{
+		display: block;
+		opacity: 1;
+	}
+}
+
+fieldset{
+	border-radius: 5px;
+	border: dotted @baseBlue thin;
+	display: table;
+}
+
+legend{
+	font-size: 2em;
+}

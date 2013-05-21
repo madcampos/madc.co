@@ -1,0 +1,38 @@
+﻿@font-face {
+	font-family: 'HandTestRegular';
+	src:url('../fonts/handtest/handtest-webfont.eot');
+	src:url('../fonts/handtest/handtest-webfont.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/handtest/handtest-webfont.woff') format('woff'),
+		url('../fonts/handtest/handtest-webfont.ttf') format('truetype'),
+		url('../fonts/handtest/handtest-webfont.svg#HandTestRegular') format('svg');
+	font-style:normal;
+	font-weight:normal;
+}
+
+p{
+	font-size:1.2em;
+	margin:10px;
+}
+
+h1{
+	font-size:4em;
+	font-weight:normal;
+	margin: 20px 0px;
+	text-align:center;
+}
+
+body{
+	color:#0080FF;
+	font-family:'HandTestRegular', cursive;
+	font-size:125%;
+
+}
+
+a{
+	border:none;
+	color:#8db9e5;
+}
+
+a:visited{
+	color:#4267B1;
+}

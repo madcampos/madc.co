@@ -1,0 +1,50 @@
+#searchbox{
+	text-align: center;
+
+	label {
+		font-size: 2em;
+	}
+
+	input[type="submit"]{
+		font-size: 1.5em;
+		margin-left: 1em;
+	}
+
+	input[type="search"]{
+		-webkit-appearance: none;
+		font-size: 1.7em;
+		border: transparent solid 0px;
+		border-bottom: dotted @baseBlue 2px;
+
+		&:hover{
+			border-bottom-color: @baseLightOrange;
+		}
+
+		&:focus{
+			border-bottom-color: @baseOrange;
+			outline:none;
+		}
+	}
+
+	p{
+		label{
+			font-size: 1.3em;
+
+			input{
+				vertical-align: middle;
+			}
+		}
+	}
+}
+
+@media all and (max-width:35em){
+	#searchbox{
+		label{
+			font-size: 1em;
+		}
+
+		input[type="submit"], input[type="search"], p label{
+			font-size: 0.8em;
+		}
+	}
+}

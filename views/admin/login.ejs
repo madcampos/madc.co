@@ -1,0 +1,21 @@
+<% if (message !== undefined) {
+	if (message.info !== undefined) { %>
+		<div class="message info"><%= __(message.info.reverse()[0]) %></div>
+	<% } else if (message.error !== undefined) { %>
+		<div class="message error"><%= __(message.error.reverse()[0]) %></div>
+	<% }
+} %>
+<form action="/login" method="post">
+    <div>
+        <label>Email: <abbr title="required">*</abbr></label>
+        <input type="text" name="email" aria-required="true" required="required" placeholder="test@foo.bar" title="Your email" value="test@foo.bar"/>
+    </div>
+    <div>
+        <label>Password: <abbr title="required">*</abbr></label>
+        <input type="password" name="password" aria-required="true" required="required" placeholder="123456" title="Your password" value="123456"/>
+    </div>
+    <div>
+		<input type="hidden" name="_csrf" value="<%= token %>"/>
+        <input type="submit" value="Log In"/>
+    </div>
+</form>

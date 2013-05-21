@@ -1,0 +1,75 @@
+/**
+ * Colors
+ */
+//Base Colors
+@baseBlue: #0080ff;
+@baseOrange: #ff8000;
+@baseLightBlue: #66b3ff;
+@baseDarkBlue: #004d99;
+@baseLightOrange: #f79748;
+@baseWhite: #fff;
+
+//16 bit
+@red: rgb(239, 41, 41);
+@darkRed: rgb(204, 0, 0);
+@blue: rgb(114, 159, 207);
+@darkBlue: rgb(52, 101, 164);
+@cyan: rgb(52, 226, 226);
+@darkCyan: rgb(6, 152, 154);
+@purple: rgb(173, 127, 168);
+@darkPurple: rgb(117, 80, 123);
+@yellow: rgb(252, 233, 79);
+@darkYellow: rgb(196, 160, 0);
+@green: rgb(138, 226, 52);
+@darkGreen: rgb(78, 154, 6);
+@white: rgb(138, 138, 136);
+@darkWhite: rgb(211, 215, 207);
+@black: rgb(46, 52, 54);
+@darkBlack: rgb(85, 87, 83);
+
+//Body Colors
+@bodyBackground: @baseWhite;
+@bodyColor: @baseBlue;
+
+//Forms
+@fieldsetBorder: @baseBlue;
+
+//Selection
+@selectionBg: @baseOrange;
+@selectionFg: @baseWhite;
+
+/**
+ * Fonts
+ */
+//Body Fonts
+@defaultFontString: 'Segoe UI', @sans-serif;
+
+//Default Families
+@serif: 'Times', serif; //TODO: choose serif fonts
+@sans-serif: 'Helvetica', 'Tahoma', sans-serif;
+@monospaced: 'Monaco', 'Droid Sans Mono', monospace; //TODO: choose monospaced fonts
+
+//Forms
+@formsFont: @defaultFontString;
+
+/**
+ * Grid system
+ */
+//Pixel based values
+@gridColumns: 12;
+@gridColumnWidth: 60px;
+@gridGutterWidth: 20px;
+@gridRowWidth: (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+// Fluid values
+@fluidGridColumnWidth: percentage(@gridColumnWidth/@gridRowWidth);
+@fluidGridGutterWidth: percentage(@gridGutterWidth/@gridRowWidth);
+@fluidGridRowWidth: 80%;
+
+/**
+ * Borders, outlines and measures
+ */
+@defaultBorderWidth: 0.1em;
+@defaultBorderStyle: solid;
+@defaultOutlineWidth: @defaultBorderWidth;
+@defaultOutlineStyle: @defaultBorderStyle;
