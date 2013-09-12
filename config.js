@@ -1,3 +1,4 @@
+/*jshint node:true*/
 var colors = require('colors'),
 	express = require('express'),
 	ejs = require('ejs'),

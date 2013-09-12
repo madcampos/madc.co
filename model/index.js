@@ -1,3 +1,4 @@
+/*jshint node:true*/
 var colors = require('colors'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),

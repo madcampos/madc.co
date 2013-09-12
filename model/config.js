@@ -1,3 +1,4 @@
+/*jshint node:true*/
 //TODO: sitewide config.
 //blog last updated date.
 //email

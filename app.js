@@ -1,8 +1,9 @@
+/*jshint node:true*/
 var colors = require('colors'),
 	express = require('express'),
 	spdy = require('spdy'),
 	fs = require('fs'),
-	certificates ={
+	certificates = {
 		key: fs.readFileSync(__dirname + '/public/keys/key.pem'),
 		cert: fs.readFileSync(__dirname + '/public/keys/cert.crt'),
 		ca: fs.readFileSync(__dirname + '/public/keys/cert.csr')
@@ -15,6 +16,8 @@ var colors = require('colors'),
 	httpServer = express(),
 	server;
 
+//TODO: add user & password autentication for good
+//TODO: decouple db connection from controller?
 model.connect('test');
 config(app);
 routes(app, httpServer);
@@ -27,4 +30,15 @@ server = spdy.createServer(certificates, app);
 io.listen(server);
 server.listen(443, function(){
 	console.log('Express server listening on port'.cyan + ' 443'.green);
+	if (process.setguid && process.setuid) {
+		console.log('Trying to giveup root...'.cyan);
+		try {
+			process.setgid('node');
+			process.setuid('node');
+			console.log('Not root anymore.'.green);
+		}
+		catch (err) {
+			console.log('Still root: '.red + err);
+		}
+	}
 });

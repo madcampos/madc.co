@@ -1,6 +1,5 @@
-/*global __, __n*/
-var i18n = require('i18n'),
-	csp = 'default-src \'self\';script-src \'unsafe-inline\' *.google-analytics.com;style-src \'self\' \'unsafe-inline\';options inline-script;report-uri /csp-report?_csrf=';
+/*jshint node:true*/
+var i18n = require('i18n');
 
 /**
  * SPDY redirection from HTTP
@@ -13,7 +12,6 @@ exports.spdy = function(req, res){
 exports.setPath = function(req, res, next){
 	res.locals.rootPath = 'https://' + req.host;
 	res.locals.url = res.locals.rootPath + req.originalUrl;
-	res.locals.mobilePath = 'https://m.' + req.host;
 	res.locals.blogPath = 'https://blog.' + req.host;
 	res.locals.portifolioPath = 'https://portifolio.' + req.host;
 	res.locals.menu = [
@@ -36,13 +34,8 @@ exports.ieTest = function(req, res, next){
 	if (req.header('User-Agent').match(/\.*MSIE (5|6|7|8)\.*/)) {
 		res.redirect(301, '/old');
 	} else {
-		res.header('Vary', 'User-Agent');
+		res.header('Vary', 'User-Agent, Accept-Encoding, Cookie');
 		res.header('X-UA-Compatible', 'IE=edge,chrome=1');
-		res.header('X-Content-Security-Policy', csp + req.session._csrf);
-		res.header('X-WebKit-CSP', csp + req.session._csrf);
-		res.header('Content-Security-Policy', csp + req.session._csrf);
-		res.header('Strict-Transport-Security', 'max-age=2592000; includeSubDomains');
-
 		next();
 	}
 };
@@ -56,19 +49,19 @@ exports.urlRedirect = function(req, res, next){
 	} else {
 		//TODO: keep or remove?
 		switch(req.host.replace(/\.\w{3}\.\w{2}$|\.\w{3}$|\.\w{2}$/, '').split('.').slice(0,-1).reverse()[0]) {
-			case 'blog':
-				res.redirect(301, 'https://' + req.host.replace(/^blog\./, '') + '/blog' + req.path);
-				break;
-			case 'beta':
-				res.redirect(301, 'https://' + req.host.replace(/^beta\./, '') + '/beta');
-				break;
-			case 'm':
-				//TODO: give smallname
-				res.redirect(301, 'https://madc.co');
-				break;
-			default:
-				next();
-				break;
+		case 'blog':
+			res.redirect(301, 'https://' + req.host.replace(/^blog\./, '') + '/blog' + req.path);
+			break;
+		case 'beta':
+			res.redirect(301, 'https://' + req.host.replace(/^beta\./, '') + '/beta');
+			break;
+		case 'm':
+			//TODO: give smallname
+			res.redirect(301, 'https://madc.co');
+			break;
+		default:
+			next();
+			break;
 		}
 	}
 };

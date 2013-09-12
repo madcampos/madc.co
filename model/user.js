@@ -1,3 +1,4 @@
+/*jshint node:true*/
 var mongoose = require('mongoose'),
 	emailValidate = function(email){
 		return (/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/).test(email);
@@ -107,7 +108,7 @@ User.statics.register = function(user, password, next) {
 		if (err) { return next(err); }
 
 		if (existingUser) {
-			return next(new Error('User already exists with name ' + user.email));
+			return next(new Error('User already exists with email ' + user.email));
 		}
 
 		user.setPassword(password, function(err, user) {

@@ -1,4 +1,4 @@
-/*global __, __n*/
+/*jshint node:true*/
 var db = require('../model');
 
 module.exports = function(req, res){

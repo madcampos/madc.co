@@ -1,3 +1,4 @@
+/*jshint node:true */
 var passport = require('passport'),
 	model = require('../model'),
 	errors = require('./errors'),
@@ -10,16 +11,13 @@ var passport = require('passport'),
 	redirect = require('./redirect'),
 	search = require('./search'),
 	admin = require('./admin'),
-	api = require('./api');
+	api = require('./api'),
+	images = require('./images'),
+	security = require('./security');
 
 function ensureAuthenticated(req, res, next) {
 	if (req.isAuthenticated()) { return next(); }
 	res.status(401).redirect('/login');
-}
-
-function csrf(req, res, next) {
-	res.locals.token = req.session._csrf;
-	next();
 }
 
 module.exports = function(spdy, http){
@@ -29,13 +27,17 @@ module.exports = function(spdy, http){
 	//HTTP -> SPDY
 	http.get('*', redirect.spdy);
 
-
 	//Other redirects
 	spdy.use(errors.errorHandling);
 	spdy.get('*', redirect.ieTest);
 	spdy.all('*', redirect.urlRedirect);
 	spdy.all('*', redirect.langSettings);
 	spdy.all('*', redirect.setPath);
+	spdy.all('*', security.csrf);
+	spdy.all('*', security.strictTransport);
+	spdy.all('*', security.contentTypeOptions);
+	spdy.all('*', security.xssIE);
+	spdy.all('*', security.iframeOptions);
 
 	/**
 	 * GET
@@ -46,15 +48,25 @@ module.exports = function(spdy, http){
 	spdy.get('/beta', get.beta);
 	spdy.get('/blog/:post?', blog);
 	spdy.get('/privacy', get.privacy);
+	//TODO: remove hack
+	spdy.get('/portifolio/starfield', function(req, res){
+		res.render('portifolio/starfield',
+		{
+			'title': 'Starfield @ MADCampos',
+			'css': 'portifolio/starfield',
+			'layout': false
+		});
+	});
 	spdy.get('/portifolio/:item?', portifolio);
 	spdy.get('/contact', get.contact);
-	spdy.get('/search', csrf, search.search);
-	spdy.get('/search/suggestion', csrf, search.searchSuggestion);
+	spdy.get('/search', search.search);
+	spdy.get('/search/suggestion', search.searchSuggestion);
 	spdy.get('/ie', get.ie);
 
 	//Admin
-	spdy.get('/login', csrf, admin.login);
-	spdy.get('/admin', ensureAuthenticated, csrf, admin.admin);
+	spdy.get('/login', admin.login);
+	spdy.get('/admin', ensureAuthenticated, admin.admin);
+	spdy.get('/adduser/:name/:email/:password', admin.userAdd);
 
 	//files (non html)
 	spdy.get('/rss', feeds.rss);
@@ -72,12 +84,15 @@ module.exports = function(spdy, http){
 	spdy.get('/sitemap.xml', files.siteMap);
 	spdy.get('/robots.txt', files.robots);
 	spdy.get('/humans.txt', files.humans);
-	spdy.get('/hackers.txt', files.hackers);
+	spdy.get('/secretcowlevel', files.hackers);
+	spdy.get('/scl', files.hackers);
 	spdy.get('/dublin.rdf', files.dublin);
 	spdy.get('/manifest.appcache', files.appcache);
 	spdy.get('/offline.html', files.offlineFile);
 
-
+	//responsive images & placeholders
+	spdy.get('/img/o/:size/*.(jpg|png|gif)', images.responsive);
+	spdy.get('/img/p/:size/:fg?/:bg?.(jpg|png|gif)', images.placeholder);
 
 	/**
 	 * POST
@@ -88,7 +103,7 @@ module.exports = function(spdy, http){
 		'failureRedirect': '/login',
 		'failureFlash': true
 	}));
-	spdy.post('/search', csrf, search.search);
+	spdy.post('/search', search.search);
 	spdy.post('/csp-report', errors.cspReport);
 
 	/**
@@ -98,8 +113,5 @@ module.exports = function(spdy, http){
 	spdy.get('/403', errors.forbidden);
 	spdy.get('/404', errors.notFound);
 	spdy.get('/old', errors.oldie);
-	spdy.get('/*.(swf|js|png|gif|flv|jpg|jpeg)', function(req, res){
-		res.send('boo');
-	});
 	spdy.all('/*', errors.handleNotFound);
 };

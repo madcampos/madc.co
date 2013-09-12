@@ -1,3 +1,4 @@
+/*jshint node:true*/
 var zlib = require('zlib');
 exports.methods = {
     gzip: zlib.createGzip
@@ -5,93 +6,105 @@ exports.methods = {
 };
 
 exports.filter = function(req, res){
-  return (/json|text|javascript/).test(res.getHeader('Content-Type'));
+	return (/json|text|javascript/).test(res.getHeader('Content-Type'));
 };
 
 module.exports = function compress(options) {
-  var options = options || {}
-    , names = Object.keys(exports.methods)
-    , filter = options.filter || exports.filter;
+	options = options || {};
+	var names = Object.keys(exports.methods),
+		filter = options.filter || exports.filter;
 
-  return function(req, res, next){
-    var accept = req.headers['accept-encoding']
-      , write = res.write
-      , end = res.end
-      , stream
-      , method;
+	return function(req, res, next){
+		var accept = req.headers['accept-encoding'],
+			write = res.write,
+			end = res.end,
+			stream,
+			method;
+		
+		// vary
+		res.setHeader('Vary', 'Accept-Encoding');
+		
+		// proxy
+		
+		res.write = function(chunk, encoding){
+			if (!this.headerSent) {
+				this._implicitHeader();
+			}
+			return stream ? stream.write(new Buffer(chunk, encoding)) : write.call(res, chunk, encoding);
+		};
+		
+		res.end = function(chunk, encoding){
+			if (chunk) {
+				this.write(chunk, encoding);
+			}
+			return stream ? stream.end() : end.call(res);
+		};
+		
+		res.on('header', function(){
+			var encoding = res.getHeader('Content-Encoding') || 'identity';
+		
+			// already encoded
+			if ('identity' != encoding) {
+				return;
+			}
+			
+			// default request filter
+			if (!filter(req, res)) {
+				return;
+			}
+			
+			// SHOULD use identity
+			if (!accept) {
+				return;
+			}
+			
+			// head
+			if ('HEAD' == req.method) {
+				return;
+			}
+			
+			// default to gzip
+			if ('*' == accept.trim()) {
+				method = 'gzip';
+			}
+			
+			// compression method
+			if (!method) {
+				for (var i = 0, len = names.length; i < len; ++i) {
+					if (~accept.indexOf(names[i])) {
+						method = names[i];
+						break;
+					}
+				}
+			}
 
-    // vary
-    res.setHeader('Vary', 'Accept-Encoding');
+			// compression method
+			if (!method) {
+				return;
+			}
 
-    // proxy
-
-    res.write = function(chunk, encoding){
-      if (!this.headerSent) this._implicitHeader();
-      return stream
-        ? stream.write(new Buffer(chunk, encoding))
-        : write.call(res, chunk, encoding);
-    };
-
-    res.end = function(chunk, encoding){
-      if (chunk) this.write(chunk, encoding);
-      return stream
-        ? stream.end()
-        : end.call(res);
-    };
-
-    res.on('header', function(){
-      var encoding = res.getHeader('Content-Encoding') || 'identity';
-
-      // already encoded
-      if ('identity' != encoding) return;
-
-      // default request filter
-      if (!filter(req, res)) return;
-
-      // SHOULD use identity
-      if (!accept) return;
-
-      // head
-      if ('HEAD' == req.method) return;
-
-      // default to gzip
-      if ('*' == accept.trim()) method = 'gzip';
-
-      // compression method
-      if (!method) {
-        for (var i = 0, len = names.length; i < len; ++i) {
-          if (~accept.indexOf(names[i])) {
-            method = names[i];
-            break;
-          }
-        }
-      }
-
-      // compression method
-      if (!method) return;
-
-      // compression stream
-      stream = exports.methods[method](options);
-
-      // header fields
-      res.setHeader('Content-Encoding', method);
-      res.removeHeader('Content-Length');
-
-      // compression
-
-      stream.on('data', function(chunk){
-        write.call(res, chunk);
-      });
-
-      stream.on('end', function(){
-        end.call(res);
-      });
-
-      stream.on('drain', function() {
-        res.emit('drain');
-      });
-    });
-
-    next();
-  };
+			// compression stream
+			stream = exports.methods[method](options);
+			
+			// header fields
+			res.setHeader('Content-Encoding', method);
+			res.removeHeader('Content-Length');
+			
+			// compression
+			
+			stream.on('data', function(chunk){
+				write.call(res, chunk);
+			});
+			
+			stream.on('end', function(){
+				end.call(res);
+			});
+			
+			stream.on('drain', function() {
+				res.emit('drain');
+			});
+		});
+		
+		next();
+	};
 };

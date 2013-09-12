@@ -6,7 +6,6 @@
 	<input type="search" placeholder="<%= __('Insira o termo de busca.') %>" value="<%= query %>" list="suggestions" id="searchfield" name="searchfield">
 	<datalist id="suggestions">
 	</datalist>
-	<input type="hidden" name="_csrf" value="<%= token %>"/>
 	<input type="submit" value="<%= __('Buscar') %>"/>
 	<p>
 		<label><%= __('Busca por tags') %> <input type="checkbox" title="<%= __('Busca por tags') %>" id="tag" name="tag" <%= tags == 'on' ? 'checked' : '' %>/></label>

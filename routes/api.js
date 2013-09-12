@@ -1,4 +1,4 @@
-/*global rootPath, __, __n, req, res*/
+/*jshint node:true*/
 var model = require('../model'),
 	isEmpty = function(obj) {
 		for (var prop in obj) {
