@@ -98,7 +98,7 @@ module.exports = function(app) {
 		app.use(express.methodOverride());
 		app.use(express.bodyParser());
 		app.use(express.cookieParser());
-		app.use(express.session({ key: 'express.sid', secret: 'hue hue hue br br br gib money plox', 'store': new SessionStore()}));
+		app.use(express.cookieSession({ key: 'express.sid', secret: 'hue hue hue br br br gib money plox', store: new SessionStore(), cookie:{httpOnly: true, maxAge: 2629743830, secure: true}}));
 		app.use(express.csrf());
 		app.use(flash());
 		app.use(passport.initialize());

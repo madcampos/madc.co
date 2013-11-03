@@ -31,9 +31,9 @@ exports.errorHandling = function(err, req, res, next){
 exports.forbidden = function(req, res){
 	res.header('Cache-Control', 'public, max-age=31556926000');
 	res.render(
-		'error/401',
+		'error/403',
 		{
-			'title': '401 @ MADCamapos',
+			'title': '403 @ MADCamapos',
 			'layout': 'error/layout',
 			'css': 'error'
 		}
@@ -46,9 +46,9 @@ exports.forbidden = function(req, res){
 exports.unauthorized = function(req, res){
 	res.header('Cache-Control', 'public, max-age=31556926000');
 	res.render(
-		'error/403',
+		'error/401',
 		{
-			'title': '403 @ MADCamapos',
+			'title': '401 @ MADCamapos',
 			'layout': 'error/layout',
 			'css': 'error'
 		}
@@ -87,12 +87,4 @@ exports.oldie = function(req, res){
 			'css': 'ie'
 		}
 	);
-};
-
-/**
- * CSP Report
- */
-exports.cspReport = function(req, res){
-	console.log(req.body);
-	res.status(200).send('reported.');
 };

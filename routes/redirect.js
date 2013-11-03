@@ -30,12 +30,12 @@ exports.setPath = function(req, res, next){
  * Test if the user-agent is Internet Explorer 8 or lower
  */
 exports.ieTest = function(req, res, next){
+	//TODO: remove this line
 	console.log(req.header('user-agent'));
 	if (req.header('User-Agent').match(/\.*MSIE (5|6|7|8)\.*/)) {
 		res.redirect(301, '/old');
 	} else {
 		res.header('Vary', 'User-Agent, Accept-Encoding, Cookie');
-		res.header('X-UA-Compatible', 'IE=edge,chrome=1');
 		next();
 	}
 };

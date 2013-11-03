@@ -20,7 +20,7 @@ function ensureAuthenticated(req, res, next) {
 	res.status(401).redirect('/login');
 }
 
-module.exports = function(spdy, http){
+module.exports = function(spdy, http) {
 	/**
 	 * Config and redirection
 	 */
@@ -34,11 +34,11 @@ module.exports = function(spdy, http){
 	spdy.all('*', redirect.langSettings);
 	spdy.all('*', redirect.setPath);
 	spdy.all('*', security.csrf);
+	spdy.all('*', security.csp);
 	spdy.all('*', security.strictTransport);
 	spdy.all('*', security.contentTypeOptions);
 	spdy.all('*', security.xssIE);
 	spdy.all('*', security.iframeOptions);
-
 	/**
 	 * GET
 	 */
@@ -51,11 +51,11 @@ module.exports = function(spdy, http){
 	//TODO: remove hack
 	spdy.get('/portifolio/starfield', function(req, res){
 		res.render('portifolio/starfield',
-		{
-			'title': 'Starfield @ MADCampos',
-			'css': 'portifolio/starfield',
-			'layout': false
-		});
+			{
+				'title': 'Starfield @ MADCampos',
+				'css': 'portifolio/starfield',
+				'layout': false
+			});
 	});
 	spdy.get('/portifolio/:item?', portifolio);
 	spdy.get('/contact', get.contact);
@@ -104,7 +104,6 @@ module.exports = function(spdy, http){
 		'failureFlash': true
 	}));
 	spdy.post('/search', search.search);
-	spdy.post('/csp-report', errors.cspReport);
 
 	/**
 	 * Error handling

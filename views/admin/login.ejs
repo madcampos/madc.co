@@ -6,6 +6,7 @@
 	<% }
 } %>
 <form action="/login" method="post">
+	<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
     <div>
         <label>Email: <abbr title="required">*</abbr></label>
         <input type="text" name="email" aria-required="true" required="required" placeholder="test@foo.bar" title="Your email" value="test@foo.bar"/>

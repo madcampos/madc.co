@@ -1,6 +1,7 @@
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
 	<!-- WP8 IE10.0 Viewport Fix -->
-	<script>(function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var msViewportStyle=document.createElement("style");msViewportStyle.appendChild(document.createTextNode("@-ms-viewport{width:auto!important}"));document.getElementsByTagName("head")[0].appendChild(msViewportStyle);}})();</script>
+	<!-- it curently works on ie because csp allows it -->
+	<script>(function(){if(navigator.userAgent.match(/IEMobile\/10\.0/)){var v=document.createElement("style");v.appendChild(document.createTextNode("@-ms-viewport{width:auto!important}"));document.getElementsByTagName("head")[0].appendChild(v);}})();console.log('hi from ie');</script>
 	<!-- CSS definitions -->
 	<% if (Array.isArray(css)) {
 		for (var i in css) { %>

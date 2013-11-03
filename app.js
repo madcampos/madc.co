@@ -6,7 +6,7 @@ var colors = require('colors'),
 	certificates = {
 		key: fs.readFileSync(__dirname + '/public/keys/key.pem'),
 		cert: fs.readFileSync(__dirname + '/public/keys/cert.crt'),
-		ca: fs.readFileSync(__dirname + '/public/keys/cert.csr')
+		ca: fs.readFileSync(__dirname + '/public/keys/ca.crt')
 	},
 	model = require('./model'),
 	routes = require('./routes'),
@@ -19,6 +19,7 @@ var colors = require('colors'),
 //TODO: add user & password autentication for good
 //TODO: decouple db connection from controller?
 model.connect('test');
+httpServer.disable('x-powered-by');
 config(app);
 routes(app, httpServer);
 
