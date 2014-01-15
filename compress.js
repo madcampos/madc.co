@@ -1,14 +1,13 @@
 /*jshint node:true*/
 var zlib = require('zlib');
 exports.methods = {
-    gzip: zlib.createGzip
-  , deflate: zlib.createDeflate
+	gzip: zlib.createGzip,
+	deflate: zlib.createDeflate
 };
 
 exports.filter = function(req, res){
 	return (/json|text|javascript/).test(res.getHeader('Content-Type'));
 };
-
 module.exports = function compress(options) {
 	options = options || {};
 	var names = Object.keys(exports.methods),
@@ -42,7 +41,7 @@ module.exports = function compress(options) {
 		
 		res.on('header', function(){
 			var encoding = res.getHeader('Content-Encoding') || 'identity';
-		
+
 			// already encoded
 			if ('identity' != encoding) {
 				return;
