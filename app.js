@@ -1,20 +1,22 @@
-/*jshint node:true*/
-var colors = require('colors'),
-	express = require('express'),
-	spdy = require('spdy'),
-	fs = require('fs'),
-	certificates = {
+/*eslint-env node*/
+"use strict";
+
+let colors = require('colors');
+let express = require('express');
+let spdy = require('spdy');
+let fs = require('fs');
+let certificates = {
 		key: fs.readFileSync(__dirname + '/public/keys/key.pem'),
 		cert: fs.readFileSync(__dirname + '/public/keys/cert.crt'),
-		ca: fs.readFileSync(__dirname + '/public/keys/ca.crt')
-	},
-	model = require('./model'),
-	routes = require('./routes'),
-	config = require('./config'),
-	io = require('socket.io'),
-	app = express(),
-	httpServer = express(),
-	server;
+		ca: fs.readFileSync(__dirname + '/public/keys/ca.crt'),
+};
+let model = require('./model');
+let routes = require('./routes');
+let config = require('./config');
+let io = require('socket.io');
+let app = express();
+let httpServer = express();
+let server;
 
 //TODO: add user & password autentication for good
 //TODO: decouple db connection from controller?

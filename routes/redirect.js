@@ -32,7 +32,8 @@ exports.setPath = function(req, res, next){
 exports.ieTest = function(req, res, next){
 	//TODO: remove this line
 	console.log(req.header('user-agent'));
-	if (req.header('User-Agent').match(/\.*MSIE (5|6|7|8)\.*/)) {
+    //TODO: test
+	if (req.header('User-Agent').match(/\.*MSIE (5|6|7|8)\.*/) && (req.url != 'old' || /\/img\/browsers\/*.\.png/.test(req.url))) {
 		res.redirect(301, '/old');
 	} else {
 		res.header('Vary', 'User-Agent, Accept-Encoding, Cookie');

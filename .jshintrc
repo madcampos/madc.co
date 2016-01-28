@@ -3,7 +3,6 @@
 	"unused":"vars",
 	"curly":true,
 	"devel":true,
-	"laxcasebreak":true,
 	"quotmark":"single",
 	"unused":true,
 	"trailing":true,
